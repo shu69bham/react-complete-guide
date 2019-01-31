@@ -1,14 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 
-const person = props => {
-  return (
-    <div>
-      <p onClick={props.click}>
-        I'm {props.name}! {props.children}
-      </p>
-      <input type="text" value={props.name} onChange={props.changed} />
-    </div>
-  );
-};
+class Person extends Component {
+  state = {};
+  render() {
+    return (
+      <div>
+        <p onClick={this.props.click}>
+          I'm {this.props.name}! {this.props.children}
+        </p>
+        <input
+          type="text"
+          value={this.props.name}
+          onChange={this.props.changed}
+        />
+      </div>
+    );
+  }
+}
 
-export default person;
+export default Person;
