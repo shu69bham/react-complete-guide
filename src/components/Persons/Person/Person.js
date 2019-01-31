@@ -1,8 +1,22 @@
 import React, { Component } from "react";
 
 class Person extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    console.log("[Person.js] Inside constructor()");
+  }
+
+  //WARNING! To be deprecated in React v17. Use componentDidMount instead.
+  componentWillMount() {
+    console.log("[Person.js] Inside componentWillMount()");
+  }
+
+  componentDidMount() {
+    console.log("[Person.js] Inside componentDidMount()");
+  }
+
   render() {
+    console.log("[Person.js] Inside render()");
     return (
       <div>
         <p onClick={this.props.click}>
