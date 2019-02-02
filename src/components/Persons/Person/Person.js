@@ -15,6 +15,28 @@ class Person extends Component {
     console.log("[Person.js] Inside componentDidMount()");
   }
 
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(nextProps) {
+    console.log(
+      "[UPDATE Person.js] Inside componentWillReceiveProps()",
+      nextProps
+    );
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(
+      "[UPDATE Person.js] Inside shouldComponentUpdate()",
+      this.props,
+      nextProps,
+      nextState
+    );
+    return true;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("[UPDATE Person.js] Inside componentDidUpdate()");
+  }
+
   render() {
     console.log("[Person.js] Inside render()");
     return (
