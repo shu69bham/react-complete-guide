@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import withClass from "../hocs/withClass";
 
 class App extends PureComponent {
   constructor(props) {
@@ -45,14 +46,18 @@ class App extends PureComponent {
       { id: 1, name: "Shubham", age: 28 },
       { id: 2, name: "Sakib", age: 29 }
     ],
-    showPersons: false
+    showPersons: false,
+    toggleCount: 0
   };
 
   deletePersonHandler = index => {
     //const persons = this.state.persons.slice();   //slice also creates a copy of the object
     const persons = [...this.state.persons]; //makes copy of this.state.persons
     persons.splice(persons, 1);
-    this.setState({ persons: persons });
+    //correct way of using setState
+    this.setState((prevState, props) => {
+      return { persons: persons, toggleCount: prevState.toggleCount + 1 };
+    });
   };
 
   togglePersonsHandler = () => {
@@ -91,7 +96,7 @@ class App extends PureComponent {
     }
 
     return (
-      <div className={classes.App}>
+      <>
         <button
           onClick={() => {
             this.setState({ showPersons: true });
@@ -106,9 +111,9 @@ class App extends PureComponent {
           clicked={this.togglePersonsHandler}
         />
         {persons}
-      </div>
+      </>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);

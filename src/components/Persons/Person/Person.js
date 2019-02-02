@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import classes from "./Person.css";
+import withClass from "../../../hocs/withClass";
 
 class Person extends Component {
   constructor(props) {
@@ -40,7 +42,7 @@ class Person extends Component {
   render() {
     console.log("[Person.js] Inside render()");
     return (
-      <div>
+      <>
         <p onClick={this.props.click}>
           I'm {this.props.name}! {this.props.children}
         </p>
@@ -49,9 +51,9 @@ class Person extends Component {
           value={this.props.name}
           onChange={this.props.changed}
         />
-      </div>
+      </>
     );
   }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
